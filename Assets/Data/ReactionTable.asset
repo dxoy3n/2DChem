@@ -15,24 +15,24 @@ MonoBehaviour:
   ions:
   - {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
   - {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+  - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
+  - {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
+  - {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
   rules:
   - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
     ionB: {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
     precipitate: AgCl
     points: 10
-  - ionA: {fileID: 0}
-    ionB: {fileID: 0}
-    precipitate: 
-    points: 0
-  - ionA: {fileID: 0}
-    ionB: {fileID: 0}
-    precipitate: 
-    points: 0
-  - ionA: {fileID: 0}
-    ionB: {fileID: 0}
-    precipitate: 
-    points: 0
+  - ionA: {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+    ionB: {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
+    precipitate: BaS04
+    points: 20
+  - ionA: {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: PbI2
+    points: 20
+  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: AgI
+    points: 15

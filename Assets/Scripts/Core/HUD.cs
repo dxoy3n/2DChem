@@ -7,6 +7,7 @@ public class HUD : MonoBehaviour
     [SerializeField] TMP_Text movesText, scoreText, clearText, toastText, resultText;
     [SerializeField] GameObject resultPanel;
     [SerializeField] Image nextImg;          // [UI] Hàng chờ: sau này đổi sang sprite
+    [SerializeField] TMP_Text nextLabel;     // [UI] Tên ion hiển thị trên NextImg
 
     public void Refresh(int moves, int maxMoves, int score, int cleared, int total)
     {
@@ -15,9 +16,22 @@ public class HUD : MonoBehaviour
         clearText.text = $"Clear: {cleared}/{total}";   // [UI] Thay bằng icon + số
     }
 
+    /* public void ShowQueue(Ion next)
+     {
+         nextImg.color = next != null ? next.color : Color.clear;   // [UI] Gán next.sprite
+     }*/
     public void ShowQueue(Ion next)
     {
-        nextImg.color = next != null ? next.color : Color.clear;   // [UI] Gán next.sprite
+        if (next == null)
+        {
+            nextImg.color = Color.clear;
+            nextLabel.text = "";
+            return;
+        }
+
+        nextImg.color = next.color;
+        nextImg.sprite = nextImg.sprite;         // [UI] Giữ sprite tròn đã gán trong Inspector
+        nextLabel.text = next.symbol;            // Hiển thị ký hiệu, ví dụ Ag<sup>+</sup>
     }
 
     public void ShowPrecipitate(string precipitate, int points)
