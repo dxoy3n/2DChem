@@ -15,29 +15,37 @@ public class GameManager : MonoBehaviour
     ReactionTable table;
     int moves, score, spawned, cleared;
     bool over;
-    readonly HashSet<ReactionRule> found = new();   // Sổ tay: kết tủa đã gặp trong màn
 
     void Awake()
     {
         Time.timeScale = 1f;
         level = Session.Current != null ? Session.Current : defaultLevel;
         table = level.table;
-        queue.Init(table);
+        queue.Init(TakeIon);
     }
 
     void Start()
     {
         for (int r = 0; r < level.startRows; r++)
-            spawned += board.FillRow(r, table.RandomIon, level.totalBalls - spawned);
+            board.FillRow(r, TakeIon);
 
         shooter.BallLanded += OnBallLanded;
-        queue.Changed += () => hud.ShowQueue(queue.Next);
+        queue.Changed += UpdateQueue;
 
-        hud.ShowQueue(queue.Next);
+        UpdateQueue();
         RefreshHUD();
     }
 
+    // Nguồn bóng duy nhất của màn: mỗi bóng tạo ra đều trừ vào totalBalls
+    Ion TakeIon()
+    {
+        if (spawned >= level.totalBalls) return null;
+        spawned++;
+        return table.RandomIon();
+    }
+
     void RefreshHUD() => hud.Refresh(moves, level.maxMoves, score, cleared, level.totalBalls);
+    void UpdateQueue() => hud.ShowQueue(queue.Next, queue.Count);
 
     void OnBallLanded(Ball placed)
     {
@@ -46,7 +54,7 @@ public class GameManager : MonoBehaviour
         moves++;
         ResolveReactions(placed);
 
-        if (moves % level.movesPerDrop == 0 && spawned < level.totalBalls)
+        if (moves % level.movesPerDrop == 0)
             DropRow();
 
         RefreshHUD();
@@ -69,7 +77,6 @@ public class GameManager : MonoBehaviour
             matched.Add(other);
             gained += rule.points;
             last = rule;
-            found.Add(rule);
         }
 
         if (matched.Count == 0) return;
@@ -86,16 +93,18 @@ public class GameManager : MonoBehaviour
     void DropRow()
     {
         board.Descend();
-        spawned += board.FillRow(0, table.RandomIon, level.totalBalls - spawned);
-        Sfx.Play(SfxType.Drop);
+        if (board.FillRow(0, TakeIon) > 0)
+            Sfx.Play(SfxType.Drop);
     }
 
     void CheckEnd()
     {
-        if (board.ReachedDeadLine())
+        if (cleared >= level.totalBalls)
+            EndGame(true);                                     // Clear đủ số bóng
+        else if (board.ReachedDeadLine())
             EndGame(false);                                    // Chạm vạch đỏ
-        else if (spawned >= level.totalBalls && board.IsEmpty)
-            EndGame(true);                                     // Xóa hết bóng
+        else if (!queue.HasBall)
+            EndGame(false);                                    // Hết bóng để bắn
         else if (moves >= level.maxMoves)
             EndGame(false);                                    // Hết lượt
     }
@@ -105,11 +114,10 @@ public class GameManager : MonoBehaviour
         over = true;
         shooter.enabled = false;
 
-        int stars = win ? level.StarsFor(moves) : 0;
         if (win) Progress.Complete(level.index);
 
         Sfx.Play(win ? SfxType.Win : SfxType.Lose);
-        hud.ShowResult(win, score, moves, stars, found, win && level.next != null);
+        hud.ShowResult(win, score, moves, win && level.next != null);
     }
 
     // ---------- Gọi từ UI Button ----------

@@ -16,6 +16,7 @@ public class Shooter : MonoBehaviour
     public Transform Muzzle => muzzle;
 
     Camera cam;
+    bool aiming;                             // Đang kéo để ngắm (bắt đầu ngoài UI)
 
     void Awake() => cam = Camera.main;
 
@@ -25,16 +26,25 @@ public class Shooter : MonoBehaviour
         ShowPreview();
     }
 
-    void ShowPreview() => preview.Setup(queue.Current, Vector2Int.zero, muzzle.position);
+    void ShowPreview()
+    {
+        preview.gameObject.SetActive(queue.HasBall);
+        if (queue.HasBall) preview.Setup(queue.Current, Vector2Int.zero, muzzle.position);
+    }
 
     void Update()
     {
         var pointer = Pointer.current;
-        if (Busy || pointer == null || !pointer.press.wasPressedThisFrame) return;
-        if (OverUI()) return;
-        if (!TryAim(out Vector2 dir)) return;
+        if (Busy || pointer == null) return;
 
-        Fire(dir);
+        if (pointer.press.wasPressedThisFrame) aiming = !OverUI();
+
+        // Kéo để ngắm (Trajectory vẽ khi đang giữ), thả tay để bắn
+        if (aiming && pointer.press.wasReleasedThisFrame)
+        {
+            aiming = false;
+            if (TryAim(out Vector2 dir)) Fire(dir);
+        }
     }
 
     // Dùng chung với Trajectory
@@ -54,6 +64,8 @@ public class Shooter : MonoBehaviour
 
     void Fire(Vector2 dir)
     {
+        if (!queue.HasBall) return;
+
         Busy = true;
         Sfx.Play(SfxType.Fire);
 

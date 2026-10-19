@@ -18,6 +18,4 @@ MonoBehaviour:
   startRows: 4
   movesPerDrop: 3
   maxMoves: 30
-  totalBalls: 30
-  threeStarMoves: 15
-  twoStarMoves: 22
+  totalBalls: 25

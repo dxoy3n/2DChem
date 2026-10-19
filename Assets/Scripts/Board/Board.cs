@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
 
     public int Columns => columns;
     public bool IsEmpty => cells.Count == 0;
+    public int Count => cells.Count;
 
     readonly Dictionary<Vector2Int, Ball> cells = new();
     static readonly Vector2Int[] dirs = { new(0, -1), new(0, 1), new(-1, 0), new(1, 0) };
@@ -69,20 +70,25 @@ public class Board : MonoBehaviour
     }
 
     // Đổ một hàng với 2-3 bóng ở cột ngẫu nhiên. Trả về số bóng đã tạo.
-    public int FillRow(int row, System.Func<Ion> randomIon, int budget)
+    public int FillRow(int row, System.Func<Ion> next)
     {
-        int n = Mathf.Min(Random.Range(minPerRow, maxPerRow + 1), budget);
+        int n = Random.Range(minPerRow, maxPerRow + 1);
 
         var free = new List<int>();
         for (int c = 0; c < columns; c++) free.Add(c);
 
-        for (int i = 0; i < n; i++)
+        int made = 0;
+        for (int i = 0; i < n && free.Count > 0; i++)
         {
+            Ion ion = next();
+            if (ion == null) break;
+
             int k = Random.Range(0, free.Count);
-            Spawn(randomIon(), new Vector2Int(free[k], row));
+            Spawn(ion, new Vector2Int(free[k], row));
             free.RemoveAt(k);
+            made++;
         }
-        return n;
+        return made;
     }
 
     // Đặt bóng bắn lên vào ô trống gần điểm dừng nhất

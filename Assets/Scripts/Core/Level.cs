@@ -11,12 +11,5 @@ public class Level : ScriptableObject
     public int startRows = 4;
     public int movesPerDrop = 3;       // Cứ N lượt thì bảng xuống 1 hàng
     public int maxMoves = 30;          // Hết lượt mà chưa clear = THUA
-    public int totalBalls = 20;        // Tổng số bóng xuất hiện trong màn
-
-    [Header("Sao (tính theo số lượt)")]
-    public int threeStarMoves = 15;
-    public int twoStarMoves = 22;
-
-    public int StarsFor(int moves) =>
-        moves <= threeStarMoves ? 3 : moves <= twoStarMoves ? 2 : 1;
+    public int totalBalls = 20;        // Tổng bóng của màn (rơi + bắn)
 }

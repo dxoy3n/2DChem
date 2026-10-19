@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,14 +10,15 @@ public class HUD : MonoBehaviour
     [Header("Hàng chờ")]
     [SerializeField] Image nextImg;
     [SerializeField] TMP_Text nextLabel;
+    [SerializeField] TMP_Text queueText;
 
     [Header("Kết quả")]
     [SerializeField] GameObject pauseButton;
+    [SerializeField] GameObject dim;             // Màn đen che HUD
     [SerializeField] GameObject resultPanel;
     [SerializeField] TMP_Text resultText;
-    [SerializeField] TMP_Text codexText;
-    [SerializeField] Stars stars;
     [SerializeField] GameObject nextButton;
+    [SerializeField] float panelDelay = 0.3f;    // Dim hiện trước, panel hiện sau
 
     public void Refresh(int moves, int maxMoves, int score, int cleared, int total)
     {
@@ -28,8 +27,10 @@ public class HUD : MonoBehaviour
         clearText.text = $"Clear: {cleared}/{total}";
     }
 
-    public void ShowQueue(Ion next)
+    public void ShowQueue(Ion next, int count)
     {
+        queueText.text = $"Hàng chờ: {count}";
+
         if (next == null)
         {
             nextImg.color = Color.clear;
@@ -38,7 +39,7 @@ public class HUD : MonoBehaviour
         }
 
         nextImg.sprite = next.sprite;
-        nextImg.color = next.color;     // Nếu sprite đã có màu, đổi thành Color.white
+        nextImg.color = next.color;
         nextLabel.text = next.symbol;
     }
 
@@ -51,22 +52,15 @@ public class HUD : MonoBehaviour
 
     void ClearToast() => toastText.text = "";
 
-    public void ShowResult(bool win, int score, int moves, int starCount,
-                           IEnumerable<ReactionRule> found, bool hasNext)
+    public void ShowResult(bool win, int score, int moves, bool hasNext)
     {
         pauseButton.SetActive(false);
         resultText.text = $"{(win ? "THẮNG" : "THUA")}\nĐiểm {score} • {moves} lượt";
-        stars.Show(starCount);
         nextButton.SetActive(win && hasNext);
-        codexText.text = BuildCodex(found);
-        resultPanel.SetActive(true);
+
+        dim.SetActive(true);
+        Invoke(nameof(OpenResultPanel), panelDelay);
     }
 
-    string BuildCodex(IEnumerable<ReactionRule> found)
-    {
-        var sb = new StringBuilder("Sổ tay phản ứng\n");
-        foreach (var r in found)
-            sb.AppendLine($"• {r.precipitate}: {r.equation}\n   {r.fact}");
-        return sb.ToString();
-    }
+    void OpenResultPanel() => resultPanel.SetActive(true);
 }
