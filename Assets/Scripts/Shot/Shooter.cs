@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
+// Đặt trên Shooter
 public class Shooter : MonoBehaviour
 {
     [SerializeField] Board board;
@@ -12,6 +13,7 @@ public class Shooter : MonoBehaviour
 
     public System.Action<Ball> BallLanded;
     public bool Busy { get; private set; }
+    public Transform Muzzle => muzzle;
 
     Camera cam;
 
@@ -29,21 +31,33 @@ public class Shooter : MonoBehaviour
     {
         var pointer = Pointer.current;
         if (Busy || pointer == null || !pointer.press.wasPressedThisFrame) return;
-
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
-
-        Vector2 target = cam.ScreenToWorldPoint(pointer.position.ReadValue());
-        Vector2 dir = target - (Vector2)muzzle.position;
-        if (dir.y < 0.15f) return;
+        if (OverUI()) return;
+        if (!TryAim(out Vector2 dir)) return;
 
         Fire(dir);
     }
 
+    // Dùng chung với Trajectory
+    public bool TryAim(out Vector2 dir)
+    {
+        dir = Vector2.zero;
+        var pointer = Pointer.current;
+        if (pointer == null) return false;
+
+        Vector2 target = cam.ScreenToWorldPoint(pointer.position.ReadValue());
+        dir = target - (Vector2)muzzle.position;
+        return dir.y >= 0.15f;
+    }
+
+    public static bool OverUI() =>
+        EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+
     void Fire(Vector2 dir)
     {
         Busy = true;
-        Ion ion = queue.TakeCurrent();
+        Sfx.Play(SfxType.Fire);
 
+        Ion ion = queue.TakeCurrent();
         Ball ball = Instantiate(ballPrefab, muzzle.position, Quaternion.identity);
         ball.Setup(ion, Vector2Int.zero, muzzle.position);
         ball.gameObject.AddComponent<Projectile>().Launch(dir, board, OnStop);
@@ -56,6 +70,7 @@ public class Shooter : MonoBehaviour
         Destroy(p.gameObject);
 
         Busy = false;
+        Sfx.Play(SfxType.Land);
         BallLanded?.Invoke(board.Place(ion, pos));
     }
 }

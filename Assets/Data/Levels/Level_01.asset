@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7878b807ff1939b468b9eb0823ce7fe3, type: 3}
+  m_Name: Level_01
+  m_EditorClassIdentifier: 
+  index: 0
+  table: {fileID: 11400000, guid: 4f661764084b13649b893569bf4dbb6a, type: 2}
+  next: {fileID: 11400000, guid: b890c4ccb47d7d245a9f7aef2485147b, type: 2}
+  startRows: 3
+  movesPerDrop: 4
+  maxMoves: 25
+  totalBalls: 20
+  threeStarMoves: 12
+  twoStarMoves: 18

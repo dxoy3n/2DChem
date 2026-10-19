@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5a2b4491b837a4fa6247badb2ae517, type: 3}
+  m_Name: Table_02
+  m_EditorClassIdentifier: 
+  ions:
+  - {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+  - {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
+  - {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
+  - {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
+  - {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
+  - {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+  - {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+  - {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+  rules:
+  - ionA: {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Fe(OH)<sub>3</sub>
+    equation: "Fe\xB3\u207A + 3OH\u207B \u2192 Fe(OH)\u2083\u2193"
+    fact: 
+    points: 20
+  - ionA: {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: "Cu\xB2\u207A + 2OH\u207B \u2192 Cu(OH)\u2082\u2193"
+    equation: "Cu\xB2\u207A + 2OH\u207B \u2192 Cu(OH)\u2082\u2193"
+    fact: 
+    points: 15
+  - ionA: {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Mg(OH)<sub>2</sub>
+    equation: "Mg\xB2\u207A + 2OH\u207B \u2192 Mg(OH)\u2082\u2193"
+    fact: 
+    points: 30
+  - ionA: {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+    precipitate: BaCO<sub>3</sub>
+    equation: "Ba\xB2\u207A + CO\u2083\xB2\u207B \u2192 BaCO\u2083\u2193"
+    fact: 
+    points: 15
+  - ionA: {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
+    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+    precipitate: CaCO<sub>3</sub>
+    equation: "Ca\xB2\u207A + CO\u2083\xB2\u207B \u2192 CaCO\u2083\u2193"
+    fact: 
+    points: 10
+  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Ag<sub>2</sub>O
+    equation: "2Ag\u207A + 2OH\u207B \u2192 Ag\u2082O\u2193 + H\u2082O"
+    fact: 
+    points: 20
+  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+    precipitate: Ag<sub>2</sub>CO<sub>3</sub>
+    equation: "2Ag\u207A + CO\u2083\xB2\u207B \u2192 Ag\u2082CO\u2083\u2193"
+    fact: 
+    points: 25
+  - ionA: {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
+    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+    precipitate: CuCO<sub>3</sub>
+    equation: "Cu\xB2\u207A + CO\u2083\xB2\u207B \u2192 CuCO\u2083\u2193"
+    fact: 
+    points: 20

@@ -1,25 +1,33 @@
+using System.Collections.Generic;
+using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
-    [SerializeField] TMP_Text movesText, scoreText, clearText, toastText, resultText;
+    [Header("Thông số")]
+    [SerializeField] TMP_Text movesText, scoreText, clearText, toastText;
+
+    [Header("Hàng chờ")]
+    [SerializeField] Image nextImg;
+    [SerializeField] TMP_Text nextLabel;
+
+    [Header("Kết quả")]
+    [SerializeField] GameObject pauseButton;
     [SerializeField] GameObject resultPanel;
-    [SerializeField] Image nextImg;          // [UI] Hàng chờ: sau này đổi sang sprite
-    [SerializeField] TMP_Text nextLabel;     // [UI] Tên ion hiển thị trên NextImg
+    [SerializeField] TMP_Text resultText;
+    [SerializeField] TMP_Text codexText;
+    [SerializeField] Stars stars;
+    [SerializeField] GameObject nextButton;
 
     public void Refresh(int moves, int maxMoves, int score, int cleared, int total)
     {
         movesText.text = $"Lượt: {moves}/{maxMoves}";
         scoreText.text = $"Điểm: {score}";
-        clearText.text = $"Clear: {cleared}/{total}";   // [UI] Thay bằng icon + số
+        clearText.text = $"Clear: {cleared}/{total}";
     }
 
-    /* public void ShowQueue(Ion next)
-     {
-         nextImg.color = next != null ? next.color : Color.clear;   // [UI] Gán next.sprite
-     }*/
     public void ShowQueue(Ion next)
     {
         if (next == null)
@@ -29,23 +37,36 @@ public class HUD : MonoBehaviour
             return;
         }
 
-        nextImg.color = next.color;
-        nextImg.sprite = nextImg.sprite;         // [UI] Giữ sprite tròn đã gán trong Inspector
-        nextLabel.text = next.symbol;            // Hiển thị ký hiệu, ví dụ Ag<sup>+</sup>
+        nextImg.sprite = next.sprite;
+        nextImg.color = next.color;     // Nếu sprite đã có màu, đổi thành Color.white
+        nextLabel.text = next.symbol;
     }
 
-    public void ShowPrecipitate(string precipitate, int points)
+    public void ShowPrecipitate(ReactionRule rule, int points)
     {
-        toastText.text = $"Kết tủa {precipitate}  +{points}";
+        toastText.text = $"Kết tủa {rule.precipitate}  +{points}\n{rule.equation}";
         CancelInvoke(nameof(ClearToast));
-        Invoke(nameof(ClearToast), 1.5f);                           // [UI] Thời gian toast
+        Invoke(nameof(ClearToast), 1.5f);
     }
 
     void ClearToast() => toastText.text = "";
 
-    public void ShowResult(bool win, int score, int moves)
+    public void ShowResult(bool win, int score, int moves, int starCount,
+                           IEnumerable<ReactionRule> found, bool hasNext)
     {
+        pauseButton.SetActive(false);
         resultText.text = $"{(win ? "THẮNG" : "THUA")}\nĐiểm {score} • {moves} lượt";
+        stars.Show(starCount);
+        nextButton.SetActive(win && hasNext);
+        codexText.text = BuildCodex(found);
         resultPanel.SetActive(true);
+    }
+
+    string BuildCodex(IEnumerable<ReactionRule> found)
+    {
+        var sb = new StringBuilder("Sổ tay phản ứng\n");
+        foreach (var r in found)
+            sb.AppendLine($"• {r.precipitate}: {r.equation}\n   {r.fact}");
+        return sb.ToString();
     }
 }

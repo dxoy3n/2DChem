@@ -5,7 +5,9 @@ public class ReactionRule
 {
     public Ion ionA;
     public Ion ionB;
-    public string precipitate;
+    public string precipitate;        // Tên hiển thị, hỗ trợ rich text: BaSO<sub>4</sub>
+    public string equation;           // Phương trình ion rút gọn
+    [TextArea] public string fact;    // Giá trị giáo dục
     public int points = 10;
 }
 

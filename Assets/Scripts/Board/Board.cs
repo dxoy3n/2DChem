@@ -49,6 +49,17 @@ public class Board : MonoBehaviour
         return false;
     }
 
+    // Có bóng ở hàng ngay sát vạch đỏ
+    public bool IsDanger
+    {
+        get
+        {
+            foreach (var c in cells.Keys)
+                if (c.y >= deadRow - 1) return true;
+            return false;
+        }
+    }
+
     public Ball Spawn(Ion ion, Vector2Int c)
     {
         Ball b = Instantiate(ballPrefab, transform);

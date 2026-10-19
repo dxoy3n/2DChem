@@ -8,22 +8,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] Board board;
     [SerializeField] Shooter shooter;
     [SerializeField] ShotQueue queue;
-    [SerializeField] ReactionTable table;
     [SerializeField] HUD hud;
+    [SerializeField] Level defaultLevel;   // Chỉ dùng khi bấm Play trực tiếp trong scene Game
 
-    [Header("Luật chơi")]
-    [SerializeField] int startRows = 4;
-    [SerializeField] int movesPerDrop = 3;   // [UI] Cứ N lượt thì bảng xuống 1 hàng
-    [SerializeField] int maxMoves = 30;      // [UI] Hết lượt mà chưa clear = THUA
-    [SerializeField] int totalBalls = 20;    // [UI] Tổng số bóng xuất hiện trong màn
-
+    Level level;
+    ReactionTable table;
     int moves, score, spawned, cleared;
     bool over;
+    readonly HashSet<ReactionRule> found = new();   // Sổ tay: kết tủa đã gặp trong màn
+
+    void Awake()
+    {
+        Time.timeScale = 1f;
+        level = Session.Current != null ? Session.Current : defaultLevel;
+        table = level.table;
+        queue.Init(table);
+    }
 
     void Start()
     {
-        for (int r = 0; r < startRows; r++)
-            spawned += board.FillRow(r, table.RandomIon, totalBalls - spawned);
+        for (int r = 0; r < level.startRows; r++)
+            spawned += board.FillRow(r, table.RandomIon, level.totalBalls - spawned);
 
         shooter.BallLanded += OnBallLanded;
         queue.Changed += () => hud.ShowQueue(queue.Next);
@@ -32,7 +37,7 @@ public class GameManager : MonoBehaviour
         RefreshHUD();
     }
 
-    void RefreshHUD() => hud.Refresh(moves, maxMoves, score, cleared, totalBalls);
+    void RefreshHUD() => hud.Refresh(moves, level.maxMoves, score, cleared, level.totalBalls);
 
     void OnBallLanded(Ball placed)
     {
@@ -41,7 +46,7 @@ public class GameManager : MonoBehaviour
         moves++;
         ResolveReactions(placed);
 
-        if (moves % movesPerDrop == 0 && spawned < totalBalls)
+        if (moves % level.movesPerDrop == 0 && spawned < level.totalBalls)
             DropRow();
 
         RefreshHUD();
@@ -51,8 +56,8 @@ public class GameManager : MonoBehaviour
     void ResolveReactions(Ball placed)
     {
         var matched = new List<Ball>();
+        ReactionRule last = null;
         int gained = 0;
-        string lastName = "";
 
         foreach (var c in board.Neighbours(placed.Cell))
         {
@@ -63,7 +68,8 @@ public class GameManager : MonoBehaviour
 
             matched.Add(other);
             gained += rule.points;
-            lastName = rule.precipitate;
+            last = rule;
+            found.Add(rule);
         }
 
         if (matched.Count == 0) return;
@@ -73,40 +79,61 @@ public class GameManager : MonoBehaviour
 
         score += gained;
         cleared += matched.Count;
-        hud.ShowPrecipitate(lastName, gained);
+        Sfx.Play(SfxType.Precipitate);
+        hud.ShowPrecipitate(last, gained);
     }
 
     void DropRow()
     {
         board.Descend();
-        spawned += board.FillRow(0, table.RandomIon, totalBalls - spawned);
+        spawned += board.FillRow(0, table.RandomIon, level.totalBalls - spawned);
+        Sfx.Play(SfxType.Drop);
     }
 
     void CheckEnd()
     {
         if (board.ReachedDeadLine())
-            EndGame(false);                          // Chạm vạch đỏ
-        else if (spawned >= totalBalls && board.IsEmpty)
-            EndGame(true);                           // Xoá hết bóng
-        else if (moves >= maxMoves)
-            EndGame(false);                          // Hết lượt
+            EndGame(false);                                    // Chạm vạch đỏ
+        else if (spawned >= level.totalBalls && board.IsEmpty)
+            EndGame(true);                                     // Xóa hết bóng
+        else if (moves >= level.maxMoves)
+            EndGame(false);                                    // Hết lượt
     }
 
     void EndGame(bool win)
     {
         over = true;
         shooter.enabled = false;
-        hud.ShowResult(win, score, moves);
+
+        int stars = win ? level.StarsFor(moves) : 0;
+        if (win) Progress.Complete(level.index);
+
+        Sfx.Play(win ? SfxType.Win : SfxType.Lose);
+        hud.ShowResult(win, score, moves, stars, found, win && level.next != null);
     }
 
     // ---------- Gọi từ UI Button ----------
     public void OnSwapPressed()
     {
-        if (!over && !shooter.Busy) queue.SwapWithNext();
+        if (!over && !shooter.Busy && !Pause.IsPaused) queue.SwapWithNext();
     }
 
     public void Restart()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void NextLevel()
+    {
+        Session.Current = level.next;
+        Restart();
+    }
+
+    public void GoMenu()
+    {
+        Session.Current = null;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 }
