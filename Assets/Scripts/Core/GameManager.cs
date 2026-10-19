@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     Level level;
     ReactionTable table;
-    int moves, score, spawned, cleared;
+    int moves, score, cleared;
     bool over;
 
     void Awake()
@@ -21,13 +21,13 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         level = Session.Current != null ? Session.Current : defaultLevel;
         table = level.table;
-        queue.Init(TakeIon);
+        queue.Init(level.queueBalls, RandomIon);
     }
 
     void Start()
     {
         for (int r = 0; r < level.startRows; r++)
-            board.FillRow(r, TakeIon);
+            board.FillRow(r, RandomIon);
 
         shooter.BallLanded += OnBallLanded;
         queue.Changed += UpdateQueue;
@@ -36,16 +36,13 @@ public class GameManager : MonoBehaviour
         RefreshHUD();
     }
 
-    // Nguồn bóng duy nhất của màn: mỗi bóng tạo ra đều trừ vào totalBalls
-    Ion TakeIon()
-    {
-        if (spawned >= level.totalBalls) return null;
-        spawned++;
-        return table.RandomIon();
-    }
+    // Bóng ngẫu nhiên cho bảng (hàng đầu và hàng rơi xuống). Không trừ vào hàng chờ.
+    Ion RandomIon() => table.RandomIon();
 
-    void RefreshHUD() => hud.Refresh(moves, level.maxMoves, score, cleared, level.totalBalls);
-    void UpdateQueue() => hud.ShowQueue(queue.Next, queue.Count);
+    void RefreshHUD() => hud.Refresh(moves, level.maxMoves, score, cleared, level.clearGoal);
+
+    // Chỉ hiển thị số bóng trong hàng chờ (không tính bóng trên súng)
+    void UpdateQueue() => hud.ShowQueue(queue.Next, queue.Waiting);
 
     void OnBallLanded(Ball placed)
     {
@@ -93,14 +90,14 @@ public class GameManager : MonoBehaviour
     void DropRow()
     {
         board.Descend();
-        if (board.FillRow(0, TakeIon) > 0)
+        if (board.FillRow(0, RandomIon) > 0)
             Sfx.Play(SfxType.Drop);
     }
 
     void CheckEnd()
     {
-        if (cleared >= level.totalBalls)
-            EndGame(true);                                     // Clear đủ số bóng
+        if (cleared >= level.clearGoal)
+            EndGame(true);                                     // Clear đủ số bóng yêu cầu
         else if (board.ReachedDeadLine())
             EndGame(false);                                    // Chạm vạch đỏ
         else if (!queue.HasBall)

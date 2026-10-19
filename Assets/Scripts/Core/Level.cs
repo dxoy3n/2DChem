@@ -10,6 +10,7 @@ public class Level : ScriptableObject
     [Header("Luật")]
     public int startRows = 4;
     public int movesPerDrop = 3;       // Cứ N lượt thì bảng xuống 1 hàng
-    public int maxMoves = 30;          // Hết lượt mà chưa clear = THUA
-    public int totalBalls = 20;        // Tổng bóng của màn (rơi + bắn)
+    public int maxMoves = 30;          // Hết lượt mà chưa thắng = THUA
+    public int queueBalls = 20;        // Số bóng trong hàng chờ (không tính bóng trên súng)
+    public int clearGoal = 12;         // Số bóng cần clear để THẮNG
 }

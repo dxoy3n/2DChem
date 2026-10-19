@@ -6,11 +6,13 @@ public class Board : MonoBehaviour
     [SerializeField] Ball ballPrefab;
     [SerializeField] int columns = 7;
     [SerializeField] float cell = 0.8f;      // [UI] Kích thước ô, chỉnh theo sprite
-    [SerializeField] int deadRow = 9;        // Bóng chạm hàng này = thua
 
     [Header("Hàng")]
     [SerializeField] int minPerRow = 2;      // Luật: số bóng tối thiểu mỗi hàng
     [SerializeField] int maxPerRow = 3;      // Luật: số bóng tối đa mỗi hàng
+
+    // Bóng chạm hàng này = THUA. Hàng 0 ở trên cùng.
+    public const int DeadRow = 11;
 
     public int Columns => columns;
     public bool IsEmpty => cells.Count == 0;
@@ -46,7 +48,7 @@ public class Board : MonoBehaviour
     public bool ReachedDeadLine()
     {
         foreach (var c in cells.Keys)
-            if (c.y >= deadRow) return true;
+            if (c.y >= DeadRow) return true;
         return false;
     }
 
@@ -56,7 +58,7 @@ public class Board : MonoBehaviour
         get
         {
             foreach (var c in cells.Keys)
-                if (c.y >= deadRow - 1) return true;
+                if (c.y >= DeadRow - 1) return true;
             return false;
         }
     }
@@ -97,7 +99,7 @@ public class Board : MonoBehaviour
         Vector2Int best = Vector2Int.zero;
         float bestD = float.MaxValue;
 
-        for (int r = 0; r <= deadRow; r++)
+        for (int r = 0; r < DeadRow; r++)
             for (int c = 0; c < columns; c++)
             {
                 var cand = new Vector2Int(c, r);

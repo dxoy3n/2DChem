@@ -5,6 +5,7 @@ public class Pause : MonoBehaviour
 {
     [SerializeField] Shooter shooter;
     [SerializeField] GameObject panel;
+    [SerializeField] GameObject dim;     // Màn đen che HUD, giống khi thắng/thua
 
     public static bool IsPaused { get; private set; }
 
@@ -18,5 +19,6 @@ public class Pause : MonoBehaviour
         Time.timeScale = on ? 0f : 1f;   // Đóng băng bóng đang bay
         shooter.enabled = !on;
         panel.SetActive(on);
+        dim.SetActive(on);
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ion_Cu
   m_EditorClassIdentifier: 
   symbol: Cu<sup>2+</sup>
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.25542888, g: 0.7735849, b: 0.5634706, a: 1}
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

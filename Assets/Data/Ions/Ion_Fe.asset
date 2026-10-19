@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Ion_Fe
   m_EditorClassIdentifier: 
   symbol: Fe<sup>3+</sup>
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.24339616, g: 0.47003084, b: 0.5999999, a: 1}
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

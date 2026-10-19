@@ -22,14 +22,14 @@ public class HUD : MonoBehaviour
 
     public void Refresh(int moves, int maxMoves, int score, int cleared, int total)
     {
-        movesText.text = $"Lượt: {moves}/{maxMoves}";
+        movesText.text = $"Lượt: {moves}";
         scoreText.text = $"Điểm: {score}";
         clearText.text = $"Clear: {cleared}/{total}";
     }
 
     public void ShowQueue(Ion next, int count)
     {
-        queueText.text = $"Hàng chờ: {count}";
+        queueText.text = $" {count}";
 
         if (next == null)
         {
