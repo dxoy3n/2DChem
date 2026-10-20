@@ -40,7 +40,7 @@ MonoBehaviour:
     points: 20
   - ionA: {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
     ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
-    precipitate: "Cu\xB2\u207A + 2OH\u207B \u2192 Cu(OH)\u2082\u2193"
+    precipitate: Cu(OH)<sub>2</sub>
     equation: "Cu\xB2\u207A + 2OH\u207B \u2192 Cu(OH)\u2082\u2193"
     fact: 
     points: 15
@@ -98,12 +98,6 @@ MonoBehaviour:
     equation: "Pb\xB2\u207A + S\xB2\u207B \u2192 PbS\u2193"
     fact: 
     points: 20
-  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
-    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
-    precipitate: Ag<sub>2</sub>S
-    equation: "2Ag\u207A + S\xB2\u207B \u2192 Ag\u2082S\u2193"
-    fact: 
-    points: 30
   - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
     ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
     precipitate: Ag<sub>2</sub>S

@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
   - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
   - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
+  - {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
   rules:
   - ionA: {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
     ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
