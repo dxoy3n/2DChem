@@ -18,5 +18,5 @@ MonoBehaviour:
   startRows: 3
   movesPerDrop: 4
   maxMoves: 25
-  queueBalls: 20
+  queueBalls: 25
   clearGoal: 15

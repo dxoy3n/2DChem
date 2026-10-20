@@ -110,8 +110,14 @@ MonoBehaviour:
     equation: "2Ag\u207A + S\xB2\u207B \u2192 Ag\u2082S\u2193"
     fact: 
     points: 30
+  - ionA: {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
+    ionB: {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
+    precipitate: PbSO<sub>4</sub>
+    equation: "Pb\xB2\u207A + SO\u2084\xB2\u207B \u2192 PbSO\u2084\u2193"
+    fact: 
+    points: 25
   fillers:
   - {fileID: 11400000, guid: 3542b1d7ed304a744886ede32221ef68, type: 2}
-  - {fileID: 11400000, guid: 42184c1e9de52ca4892de7868c290329, type: 2}
   - {fileID: 11400000, guid: 20f80cfef91c6af4b8ab7aab001ef97a, type: 2}
+  - {fileID: 11400000, guid: 42184c1e9de52ca4892de7868c290329, type: 2}
   fillerChance: 0.25
