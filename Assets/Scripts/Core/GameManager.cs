@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
         var matched = new List<Ball>();
         ReactionRule last = null;
         int gained = 0;
+        int reactions = 0;                   
 
         foreach (var c in board.Neighbours(placed.Cell))
         {
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
             matched.Add(other);
             gained += rule.points;
             last = rule;
+            reactions++;                      
         }
 
         if (matched.Count == 0) return;
@@ -88,7 +90,7 @@ public class GameManager : MonoBehaviour
         foreach (var b in matched) board.Remove(b);
 
         score += gained;
-        cleared += matched.Count;
+        cleared += reactions;                   
         Sfx.Play(SfxType.Precipitate);
         hud.ShowPrecipitate(last, gained);
     }

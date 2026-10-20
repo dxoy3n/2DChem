@@ -12,5 +12,5 @@ public class Level : ScriptableObject
     public int movesPerDrop = 3;       // Cứ N lượt thì bảng xuống 1 hàng
     public int maxMoves = 30;          // Hết lượt mà chưa thắng = THUA
     public int queueBalls = 20;        // Số bóng trong hàng chờ (không tính bóng trên súng)
-    public int clearGoal = 12;         // Số bóng cần clear để THẮNG
+    public int clearGoal = 15;         // Số phản ứng cần clear để THẮNG
 }

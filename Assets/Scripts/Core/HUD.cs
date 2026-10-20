@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour
     {
         movesText.text = $"Lượt: {moves}";
         scoreText.text = $"Điểm: {score}";
-        clearText.text = $"Clear: {cleared}/{total}";
+        clearText.text = $"Phản ứng: {cleared}/{total}";
     }
 
     public void ShowQueue(Ion next, int count)
