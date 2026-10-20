@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 678b6e7ecb953e54297228c7c3597c35, type: 3}
-  m_Name: Ion_I
+  m_Name: Ion_S
   m_EditorClassIdentifier: 
-  symbol: I<sup>-</sup>
-  color: {r: 0.21280874, g: 0.556707, b: 0.9169811, a: 1}
+  symbol: S<sup>2-</sup>
+  color: {r: 0.9607843, g: 0.8509804, b: 0.039215688, a: 1}
   sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

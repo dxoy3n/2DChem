@@ -14,13 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ions:
   - {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
-  - {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
-  - {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
-  - {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
-  - {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
   - {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+  - {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
+  - {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
+  - {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
+  - {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
+  - {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
+  - {fileID: 11400000, guid: ded38d9c8fe7e664a9b7c5a0eab6bd2e, type: 2}
+  - {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
   - {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
   - {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+  - {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+  - {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
+  - {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
+  - {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+  - {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+  - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
+  - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
   rules:
   - ionA: {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
     ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
@@ -53,20 +63,55 @@ MonoBehaviour:
     fact: 
     points: 10
   - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
-    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
-    precipitate: Ag<sub>2</sub>O
-    equation: "2Ag\u207A + 2OH\u207B \u2192 Ag\u2082O\u2193 + H\u2082O"
+    ionB: {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
+    precipitate: AgCl
+    equation: "Ag\u207A + Cl\u207B \u2192 AgCl\u2193"
     fact: 
     points: 20
-  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+  - ionA: {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
     ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
-    precipitate: Ag<sub>2</sub>CO<sub>3</sub>
-    equation: "2Ag\u207A + CO\u2083\xB2\u207B \u2192 Ag\u2082CO\u2083\u2193"
+    precipitate: MgCO<sub>3</sub>
+    equation: "Mg\xB2\u207A + CO\u2083\xB2\u207B \u2192 MgCO\u2083\u2193"
+    fact: 
+    points: 25
+  - ionA: {fileID: 11400000, guid: ded38d9c8fe7e664a9b7c5a0eab6bd2e, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Zn(OH)<sub>2</sub>
+    equation: "Zn\xB2\u207A + 2OH\u207B \u2192 Zn(OH)\u2082\u2193"
+    fact: 
+    points: 20
+  - ionA: {fileID: 11400000, guid: ded38d9c8fe7e664a9b7c5a0eab6bd2e, type: 2}
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: ZnS
+    equation: "Zn\xB2\u207A + S\xB2\u207B \u2192 ZnS\u2193"
     fact: 
     points: 25
   - ionA: {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
-    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
-    precipitate: CuCO<sub>3</sub>
-    equation: "Cu\xB2\u207A + CO\u2083\xB2\u207B \u2192 CuCO\u2083\u2193"
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: CuS
+    equation: "Cu\xB2\u207A + S\xB2\u207B \u2192 CuS\u2193"
+    fact: 
+    points: 30
+  - ionA: {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: PbS
+    equation: "Pb\xB2\u207A + S\xB2\u207B \u2192 PbS\u2193"
     fact: 
     points: 20
+  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: Ag<sub>2</sub>S
+    equation: "2Ag\u207A + S\xB2\u207B \u2192 Ag\u2082S\u2193"
+    fact: 
+    points: 30
+  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+    precipitate: Ag<sub>2</sub>S
+    equation: "2Ag\u207A + S\xB2\u207B \u2192 Ag\u2082S\u2193"
+    fact: 
+    points: 30
+  fillers:
+  - {fileID: 11400000, guid: 3542b1d7ed304a744886ede32221ef68, type: 2}
+  - {fileID: 11400000, guid: 42184c1e9de52ca4892de7868c290329, type: 2}
+  - {fileID: 11400000, guid: 20f80cfef91c6af4b8ab7aab001ef97a, type: 2}
+  fillerChance: 0.25

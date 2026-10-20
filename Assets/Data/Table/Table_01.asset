@@ -14,36 +14,40 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ions:
   - {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
-  - {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
   - {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+  - {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
+  - {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
+  - {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
+  - {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
+  - {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
   - {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
+  - {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+  - {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
   - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
-  - {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
+  - {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
   rules:
-  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
-    ionB: {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
-    precipitate: AgCl
-    equation: "Ag\u207A + Cl\u207B \u2192 AgCl\u2193"
-    fact: "K\u1EBFt t\u1EE7a tr\u1EAFng, d\xF9ng \u0111\u1EC3 nh\u1EADn bi\u1EBFt
-      Cl\u207B b\u1EB1ng dung d\u1ECBch AgNO\u2083. H\xF3a \u0111en d\u1EA7n khi
-      ra \xE1nh s\xE1ng."
+  - ionA: {fileID: 11400000, guid: 6950cd0f359d62743b2aee4bef3dda07, type: 2}
+    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+    precipitate: CaCO<sub>3</sub>
+    equation: "Ca\xB2\u207A + CO\u2083\xB2\u207B \u2192 CaCO\u2083\u2193"
+    fact: 
     points: 10
-  - ionA: {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
-    ionB: {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
-    precipitate: BaSO<sub>4</sub>
-    equation: "Ba\xB2\u207A + SO\u2084\xB2\u207B \u2192 BaSO\u2084\u2193"
+  - ionA: {fileID: 11400000, guid: 86569e549ebf7c349b407919da279307, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Mg(OH)<sub>2</sub>
+    equation: "Mg\xB2\u207A + 2OH\u207B \u2192 Mg(OH)\u2082\u2193"
     fact: 
     points: 20
-  - ionA: {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
-    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
-    precipitate: PbI<sub>2</sub>
-    equation: "Pb\xB2\u207A + 2I\u207B \u2192 PbI\u2082\u2193"
+  - ionA: {fileID: 11400000, guid: 76151e21af960bf48b710e37ae4d69c4, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Fe(OH)<sub>3</sub>
+    equation: "Fe\xB3\u207A + 3OH\u207B \u2192 Fe(OH)\u2083\u2193"
     fact: 
     points: 20
-  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
-    ionB: {fileID: 11400000, guid: a5edfbbe0d43bb0409b57b474b68aef8, type: 2}
-    precipitate: AgI
-    equation: "Ag\u207A + I\u207B \u2192 AgI\u2193"
+  - ionA: {fileID: 11400000, guid: 67904743cbe46d34ba1e00ea6f8c7e2f, type: 2}
+    ionB: {fileID: 11400000, guid: 9a031904210efd24c818bd54513f5ab0, type: 2}
+    precipitate: Cu(OH)<sub>2</sub>
+    equation: "Cu\xB2\u207A + 2OH\u207B \u2192 Cu(OH)\u2082\u2193"
     fact: 
     points: 15
   - ionA: {fileID: 11400000, guid: f4c78d348ab1e564eb191a3405106b1f, type: 2}
@@ -52,3 +56,26 @@ MonoBehaviour:
     equation: "Pb\xB2\u207A + SO\u2084\xB2\u207B \u2192 PbSO\u2084\u2193"
     fact: 
     points: 15
+  - ionA: {fileID: 11400000, guid: 610b488a6ba539d45bdefd77c44da9a5, type: 2}
+    ionB: {fileID: 11400000, guid: d3048f9390a46c4498bca40685b737e7, type: 2}
+    precipitate: AgCl
+    equation: "Ag\u207A + Cl\u207B \u2192 AgCl\u2193"
+    fact: 
+    points: 15
+  - ionA: {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+    ionB: {fileID: 11400000, guid: ae00d5563feebe34fa84135da7cedfbf, type: 2}
+    precipitate: BaSO<sub>4</sub>
+    equation: "Ba\xB2\u207A + SO\u2084\xB2\u207B \u2192 BaSO\u2084\u2193"
+    fact: 
+    points: 15
+  - ionA: {fileID: 11400000, guid: 247aa450629a34f458f9ff1585006567, type: 2}
+    ionB: {fileID: 11400000, guid: 454fdb393bc347041ab54bd09d9d0a14, type: 2}
+    precipitate: BaCO<sub>3</sub>
+    equation: "Ba\xB2\u207A + CO\u2083\xB2\u207B \u2192 BaCO\u2083\u2193"
+    fact: 
+    points: 20
+  fillers:
+  - {fileID: 11400000, guid: 3542b1d7ed304a744886ede32221ef68, type: 2}
+  - {fileID: 11400000, guid: 42184c1e9de52ca4892de7868c290329, type: 2}
+  - {fileID: 11400000, guid: 20f80cfef91c6af4b8ab7aab001ef97a, type: 2}
+  fillerChance: 0.25

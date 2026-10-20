@@ -36,8 +36,14 @@ public class GameManager : MonoBehaviour
         RefreshHUD();
     }
 
-    // Bóng ngẫu nhiên cho bảng (hàng đầu và hàng rơi xuống). Không trừ vào hàng chờ.
+    // Bóng ngẫu nhiên cho bảng lúc bắt đầu và cho hàng chờ / bóng bắn. Không có ion trung hòa.
     Ion RandomIon() => table.RandomIon();
+
+    // Bóng cho hàng rơi xuống: đôi khi là ion trung hòa (chỉ rơi, không vào hàng chờ)
+    Ion DropIon() =>
+        table.fillers.Length > 0 && Random.value < table.fillerChance
+            ? table.RandomFiller()
+            : RandomIon();
 
     void RefreshHUD() => hud.Refresh(moves, level.maxMoves, score, cleared, level.clearGoal);
 
@@ -90,7 +96,7 @@ public class GameManager : MonoBehaviour
     void DropRow()
     {
         board.Descend();
-        if (board.FillRow(0, RandomIon) > 0)
+        if (board.FillRow(0, DropIon) > 0)
             Sfx.Play(SfxType.Drop);
     }
 
